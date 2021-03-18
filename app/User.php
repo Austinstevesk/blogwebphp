@@ -1,10 +1,13 @@
-<?php ?>
+<?php 
 
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements AuthenticatableContract, CanResetPasswordContract
 {
@@ -15,6 +18,8 @@ class User extends Authenticatable implements AuthenticatableContract, CanResetP
    *
    * @var string
    */
+  use HasFactory, Notifiable;
+
   protected $table = 'users';
 
   /**
@@ -30,6 +35,10 @@ class User extends Authenticatable implements AuthenticatableContract, CanResetP
    * @var array
    */
   protected $hidden = ['password', 'remember_token'];
+
+  protected $casts = [
+    'email_verified_at' => 'datetime',
+];
 
   // user has many posts
   public function posts()
