@@ -25,8 +25,9 @@ class PostController extends Controller
     public function create(Request $request)
     {
       // 
+      $post = new Posts();
       if ($request->user()->can_post()) {
-        return view('posts.create');
+        return view('posts/create');
       } else {
         return redirect('/')->withErrors('You have not sufficient permissions for writing post');
       }
