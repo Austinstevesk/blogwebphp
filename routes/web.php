@@ -44,6 +44,8 @@ Route::middleware(['auth'])->group(function () {
   Route::post('comment/add', 'App\Http\Controllers\CommentController@store');
   // delete comment
   Route::post('comment/delete/{id}', 'App\Http\Controllers\CommentController@distroy');
+  //Logout
+  Route::get('/logout', 'App\Http\ControllersAuth\LoginController@logout')->name('logout' );
 });
 
 //users profile
