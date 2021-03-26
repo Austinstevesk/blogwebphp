@@ -5,4 +5,5 @@ git clone https://github.com/Austinstevesk/blogwebphp.git
 
 cd blogwephp
 cd blog
+-
 php artisan serve
