@@ -57,7 +57,12 @@
                       <a href="{{ url('/user/'.Auth::id()) }}">My Profile</a>
                     </li>
                     <li>
-                      <a href="{{ url('/auth/logout') }}">Logout</a>
+                      <!-- <a href="{{ route('logout') }}">Logout</a> -->
+                      <form action="{{route('logout')}}" method='post'>
+                      <button name='logout' type='submit'>
+                      Logout
+                      </button> 
+                      </form>
                     </li>
                   </ul>
                 </li>

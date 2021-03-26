@@ -13,13 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\PostController@index');
+Route::get('/', 'App\Http\Controllers\PostController@index')->name('root');
 Route::get('/home', ['as' => 'home', 'uses' => 'App\Http\Controllers\PostController@index']);
 
 //authentication
 // Route::resource('auth', 'Auth\AuthController');
 // Route::resource('password', 'Auth\PasswordController');
-Route::get('/logout', 'App\Http\Controllers\UserController@logout');
+//Route::get('/logout', 'Auth\Login\Controller@logout')->name('logout');
+Route::post('/logout', 'App\Http\Controllers\Auth\LogoutController@logout')->name('logout');
+//Route::get('/logout', 'App\Http\Controllers\Auth\Login\Controller@logout')->name('logout');
 Route::group(['prefix' => 'auth'], function () {
   Auth::routes();
 });
@@ -44,8 +46,6 @@ Route::middleware(['auth'])->group(function () {
   Route::post('comment/add', 'App\Http\Controllers\CommentController@store');
   // delete comment
   Route::post('comment/delete/{id}', 'App\Http\Controllers\CommentController@distroy');
-  //Logout
-  Route::get('/logout', 'App\Http\ControllersAuth\LoginController@logout')->name('logout' );
 });
 
 //users profile
